@@ -1,0 +1,34 @@
+@"
+# Visual Studio
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Build
+bin/
+obj/
+Debug/
+Release/
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# Docker
+*.migration
+
+# Logs
+*.log
+logs/
+
+# User secrets
+secrets.json
+appsettings.Production.json
+
+# IDE
+.idea/
+.vscode/
+"@ | Out-File -FilePath .gitignore -Encoding UTF8

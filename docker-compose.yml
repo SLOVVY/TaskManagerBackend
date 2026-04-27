@@ -1,0 +1,36 @@
+﻿version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15
+    container_name: taskdb_postgres
+    environment:
+      POSTGRES_DB: tasksdb
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: yourpassword
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  app:
+    build: .
+    container_name: taskapp
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80
+      - ConnectionStrings__DefaultConnection=Host=postgres;Port=5432;Database=tasksdb;Username=postgres;Password=yourpassword
+    ports:
+      - "5000:80"
+      - "5001:443"
+
+volumes:
+  postgres_data:
