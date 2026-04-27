@@ -33,7 +33,7 @@ TaskManager API
 
 1. Клонируйте репозиторий
 bash:
-git clone https://github.com/SLOWY/TaskManagerBackend.git
+git clone https://github.com/SLOVVY/TaskManagerBackend.git
 cd TaskManagerBackend
 
 2. Запустите приложение
